@@ -9,7 +9,7 @@ extern crate json;
 mod controllers;
 
 use actix::System;
-use actix_web::{middleware, server, App};
+use actix_web::{http::Method, middleware, server, App};
 use controllers::*;
 use std::env;
 
@@ -23,7 +23,10 @@ fn main() {
     server::new(|| {
         App::new()
             .middleware(middleware::Logger::default())
-            .resource("/health", |r| r.f(health))
+            .resource("/health", |resource| resource.f(health))
+            .resource("/publish", |resource| {
+                resource.method(Method::POST).with(publish)
+            })
     }).bind(format!("0.0.0.0:{}", &port).as_str())
         .unwrap()
         .shutdown_timeout(1)
