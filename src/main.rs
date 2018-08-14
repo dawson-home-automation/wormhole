@@ -1,11 +1,11 @@
 extern crate actix_web;
 
-use std::env;
-use actix_web::{server, App, HttpRequest, Responder};
+mod controllers;
 
-fn health(_: &HttpRequest) -> impl Responder {
-    "{\"status\": \"ok\"}"
-}
+use controllers::*;
+use std::env;
+use actix_web::{server, App};
+
 
 fn main() {
     let port = env::var("PORT").unwrap_or("8000".to_string());
