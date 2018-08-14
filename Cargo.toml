@@ -4,4 +4,12 @@ version = "0.1.0"
 authors = ["Dawson Israel <dawfre@amazon.com>"]
 
 [dependencies]
+env_logger = "*"
+
+actix = "0.7.3"
 actix-web = "0.7.3"
+
+serde = "1.0"
+serde_json = "1.0"
+serde_derive = "1.0"
+json = "*"
