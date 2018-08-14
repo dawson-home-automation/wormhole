@@ -27,6 +27,6 @@ install:
   - docker build .
 
 script:
-  - heroku login:container
+  - heroku container:login
   - heroku container:push web --app home-wormhole
   - heroku container:release web --app home-wormhole
