@@ -4,7 +4,7 @@ use std::env;
 use actix_web::{server, App, HttpRequest, Responder};
 
 fn health(_: &HttpRequest) -> impl Responder {
-    "{\"status\": \"ok\""
+    "{\"status\": \"ok\"}"
 }
 
 fn main() {
