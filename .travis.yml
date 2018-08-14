@@ -16,13 +16,6 @@ matrix:
   allow_failures:
     - rust: stable
 
-addons:
-  apt:
-    sources:
-      - heroku
-    packages:
-      - heroku-toolbelt
-
 install:
   - docker build .
 
