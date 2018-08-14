@@ -27,7 +27,6 @@ install:
   - docker build .
 
 script:
-  - docker login -u _ -p "$HEROKU_TOKEN" registry.heroku.com
-  - docker build -t registry.heroku.com/home-wormhole/web .
-  - docker push registry.heroku.com/home-wormhole/web
+  - heroku login:container
+  - heroku container:push web --app home-wormhole
   - heroku container:release web --app home-wormhole
