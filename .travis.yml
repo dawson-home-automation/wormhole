@@ -2,25 +2,32 @@ language: rust
 dist: trusty
 cache: cargo
 sudo: true
+
 services:
   - docker
+
 rust:
   - stable
+
 before_install:
   - sudo apt-get update
+
 matrix:
   allow_failures:
     - rust: stable
+
 addons:
   apt:
     sources:
       - heroku
     packages:
       - heroku-toolbelt
+
 install:
   - docker build .
+
 script:
   - docker login -u _ -p "$HEROKU_TOKEN" registry.heroku.com
   - docker build -t registry.heroku.com/home-wormhole/web .
   - docker push registry.heroku.com/home-wormhole/web
-  - heroku run --app home-wormhole
+  - heroku container:release web --app home-wormhole
