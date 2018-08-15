@@ -35,6 +35,8 @@ pub fn publish(request: Json<Request>) -> impl Responder {
         )
         .expect("Publish failure");
 
+    mq_client.disconnect();
+
     HttpResponse::Ok()
 }
 
