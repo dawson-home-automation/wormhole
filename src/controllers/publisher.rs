@@ -2,6 +2,7 @@ extern crate rumqtt;
 
 use self::rumqtt::{MqttClient, MqttOptions, QoS};
 use actix_web::{HttpResponse, Json, Responder};
+use std::env;
 
 #[derive(Debug, Deserialize)]
 pub struct Request {
@@ -42,7 +43,7 @@ fn get_mqtt_client() -> MqttClient {
         .set_keep_alive(5)
         .set_reconnect(3)
         .set_client_id("wormhole")
-        .set_broker("test.mosquitto.org:1883");
+        .set_broker(env::var("MQTT_SERVER").unwrap().as_str());
 
     MqttClient::start(client_options, None).unwrap()
 }
